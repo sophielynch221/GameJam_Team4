@@ -14,7 +14,7 @@ namespace InterFacing
         }
 
         // Switch the first playable world of the game.
-        public void ToMainGameWorldOne()
+        public void ToLevel1()
         {
             SceneManager.LoadScene("TychoScene");
         }
