@@ -7,20 +7,19 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject     _pauseMenu;                 // Pause screen.         
     [SerializeField] private GameObject     _settingsMenu;              // Settings interface.
 
-
     private bool    _paused             = false;                        // Is the game currently paused.
-    private bool    _inSettings         = false;                        // Is the user currently in the settings menu.
 
 
 
 
+    [System.Obsolete]
     private void Update()
     {
         // Switch on or off the pause menu when the settings aren't open.
         if (Input.GetButtonDown("Pause"))
         {
 
-            if (!_inSettings)
+            if (!_settingsMenu.active)
             {
                 if (!_paused)
                 {
@@ -30,10 +29,6 @@ public class PauseMenu : MonoBehaviour
                 {
                     UnPauseGame();
                 }
-            }
-            else
-            {
-                CloseSettingsMenu();
             }
         }
     }
@@ -45,8 +40,8 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         _pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-        _paused = true;
+        Time.timeScale  = 0;
+        _paused         = true;
     }
 
 
@@ -54,25 +49,7 @@ public class PauseMenu : MonoBehaviour
     public void UnPauseGame()
     {
         _pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-        _paused = false;
-    }
-
-
-
-
-    // Load the settings interface.
-    public void OpenSettingsMenu()
-    {
-        _settingsMenu.SetActive(true);
-        _inSettings = true;
-    }
-
-
-    // UnLoad the settings interface.
-    public void CloseSettingsMenu()
-    {
-        _settingsMenu.SetActive(false);
-        _inSettings = false;
+        Time.timeScale  = 1;
+        _paused         = false;
     }
 }

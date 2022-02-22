@@ -9,8 +9,8 @@ public class AudioSettings : MonoBehaviour
     // Code based on https://www.youtube.com/watch?v=yWCHaTwVblk&ab_channel=Hooson
 
 
-    [SerializeField] private Slider             _musicVolumeSlider;
-    [SerializeField] private TextMeshProUGUI    _musicVolumeText;
+    [SerializeField] private Slider             _musicVolumeSlider;                 // Slider object responsible for setting the ingame sound volume.
+    [SerializeField] private TextMeshProUGUI    _musicVolumeText;                   // Text showing the current volume of the ingame sound.
 
 
 

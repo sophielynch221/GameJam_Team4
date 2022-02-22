@@ -11,11 +11,13 @@ public class SceneSwitch : MonoBehaviour
         SceneManager.LoadScene("TychoMenu");
     }
 
+
     // Switch the first playable world of the game.
     public void ToLevel1()
     {
         SceneManager.LoadScene("TychoGame");
     }
+
 
     // Shut down this instance of the game.
     public void QuitGame()
