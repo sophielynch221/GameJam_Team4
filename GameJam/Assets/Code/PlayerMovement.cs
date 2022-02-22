@@ -41,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (movementVector.y == 0 && movement.Player.Move.inProgress)
+        if (movement.Player.Move.inProgress)
         {
             xMove = movementVector.x;
             speed = 10f;
-            var mover = movementVector * Time.fixedDeltaTime * speed;
+            var mover = new Vector2(xMove, 0) * Time.fixedDeltaTime * speed;
             transform.position += (Vector3)mover;
         }
         else if (movementVector == Vector2.zero)
