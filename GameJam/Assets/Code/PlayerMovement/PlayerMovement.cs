@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     float xMove = 0;
     private float xJump;
     float speed = 13f;
-    Movement movement;
     Vector2 movementVector;
     bool isGrounded = false;
     private bool jumping;
@@ -24,16 +23,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         jumpHeight = CalculateJumpForce(Physics2D.gravity.magnitude, jump);
-        movement = new Movement();
-        movement.Enable();
-        movement.Player.Jump.performed += Jump;
-        movement.Player.Jump.canceled += JumpCancel;
+        InputManager.Instance.inputActions.Player.Jump.performed += Jump;
+        InputManager.Instance.inputActions.Player.Jump.canceled += JumpCancel;
         counterJumpForce = new Vector2(0, fallSpeed);
     }
 
     private void FixedUpdate()
     {
-        movementVector = movement.Player.Move.ReadValue<Vector2>();
+        movementVector = InputManager.Instance.inputActions.Player.Move.ReadValue<Vector2>();
 
         Move();
 
@@ -67,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (movement.Player.Move.inProgress)
+        if (InputManager.Instance.inputActions.Player.Move.inProgress)
         {
             xMove = movementVector.x;
             xJump = xMove;
