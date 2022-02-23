@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     private void Update()
     {
         // Switch on or off the pause menu when the settings aren't open.
-        if (Input.GetButtonDown("Pause"))
+        if (InputManager.Instance.inputActions.Player.Pause.triggered)
         {
 
             if (!_settingsMenu.active)
