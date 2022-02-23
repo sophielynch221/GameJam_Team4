@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     ContactPoint2D point;
     float jump = 60;
-    float fallSpeed = -70;
+    float fallSpeed = -90;
     float xMove = 0;
     private float xJump;
     float speed = 13f;
@@ -109,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             jumping = false;
         }
+        else if(point.point.x <= transform.position.x || point.point.x >= transform.position.x)
+            jumping = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
