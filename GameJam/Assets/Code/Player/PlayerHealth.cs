@@ -5,13 +5,12 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static int s_Health = 100;
+    [SerializeField] private UnityEvent     _updateHealthElement;                   // Event triggered whenever the health gets updated.
+    [SerializeField] private UnityEvent     _playerDeath;                           // Event triggered upon death.
 
-    [SerializeField] private UnityEvent _updateHealthElement;
-    [SerializeField] private UnityEvent _playerDeath;
-
-    private bool _Invincible = false;
-    private int _maxHealth = 100;
+    public static int    s_Health           = 100;                                  // Current health the player has.
+    private int          _maxHealth         = 100;                                  // Maximum amount of health the player can have.
+    private bool         _Invincible        = false;                                // When true the player can't take damage.
 
 
 
