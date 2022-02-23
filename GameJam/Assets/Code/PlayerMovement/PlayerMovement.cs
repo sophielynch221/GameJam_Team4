@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     float jump = 13;
     float xMove = 0;
     float speed = 13f;
-    float jumpValue;
     Movement movement;
     Vector2 movementVector;
     bool isGrounded = false;
@@ -25,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         movementVector = movement.Player.Move.ReadValue<Vector2>();
-        jumpValue = movement.Player.Jump.ReadValue<float>();
+        float jumpValue = movement.Player.Jump.ReadValue<float>();
 
         Move();
 
         if(isGrounded)
-            Jump();
+            Jump(jumpValue);
 
     }
 
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Jump()
+    private void Jump(float jumpValue)
     {
         rb.AddForce(new Vector2(0, jump) * jumpValue, ForceMode2D.Impulse);
     }
