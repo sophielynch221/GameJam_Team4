@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     float jump = 13;
     float xMove = 0;
-    float awayForce;
     float speed = 13f;
     Movement movement;
     Vector2 movementVector;
     bool isGrounded = false;
+    private bool jumping;
 
     private void Start()
     {
@@ -33,10 +33,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void JumpRelease()
+    {
+
+    }
+
     private void Jump(float jumpValue)
     {
         rb.AddForce(new Vector2(0, jump) * jumpValue, ForceMode2D.Impulse);
-        rb.AddForce(new Vector2(awayForce, 0) * jumpValue, ForceMode2D.Impulse);
     }
 
     private void Move()
@@ -50,7 +54,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (movementVector == Vector2.zero)
         {
-            speed = Mathf.MoveTowards(speed, 0, 1.5f);
+            if (jumping)
+                speed = 8f;
+            else
+                speed = Mathf.MoveTowards(speed, 0, 1.5f);
             var mover = new Vector2(xMove, 0) * Time.fixedDeltaTime * speed;
             transform.position += (Vector3)mover;
         }
@@ -60,11 +67,22 @@ public class PlayerMovement : MonoBehaviour
     {
         ContactPoint2D point = collision.GetContact(0);
         if(point.point.y < transform.position.y)
+        {
+            isGrounded = true;
+            jumping = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        ContactPoint2D point = collision.GetContact(0);
+        if (point.point.y < transform.position.y)
             isGrounded = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         isGrounded = false;
+        jumping = true;
     }
 }
