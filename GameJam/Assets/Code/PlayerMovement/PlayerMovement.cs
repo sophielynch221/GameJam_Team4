@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Movement movement;
     Vector2 movementVector;
     bool isGrounded = false;
+    private bool jumping;
 
     private void Start()
     {
