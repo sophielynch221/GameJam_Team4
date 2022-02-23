@@ -9,6 +9,7 @@ public class SceneSwitch : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene("TychoMenu");
+        Time.timeScale = 1;
     }
 
 
@@ -16,6 +17,7 @@ public class SceneSwitch : MonoBehaviour
     public void ToLevel1()
     {
         SceneManager.LoadScene("TychoGame");
+        Time.timeScale = 1;
     }
 
 
