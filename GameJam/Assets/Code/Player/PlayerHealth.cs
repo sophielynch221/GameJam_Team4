@@ -17,8 +17,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Intrigger");
-
         if (other.GetComponent<DoDamage>())
         {
             var healthScript = other.GetComponent<DoDamage>();
