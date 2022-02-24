@@ -9,16 +9,15 @@ public class Turret : MonoBehaviour
     public Sprite turret2;
     public GameObject bullet;
     public Transform spawnpoint;
+    public Transform endpoint;
     public bool shot;
     float timer = 120f;
-    public float xposition;
-    public float yposition;
+    public enum direction {up,down,left,right};
+    public direction d;
     
     // Start is called before the first frame update
     void Start()
     {
-        xposition = -8.8f;
-        yposition = -1.3f;
         bullet.SetActive(false);
     }
 
@@ -30,8 +29,27 @@ public class Turret : MonoBehaviour
             turret.GetComponent<SpriteRenderer>().sprite = turret1;
             bullet.SetActive(true);
             bullet.transform.SetParent(this.transform);
-            bullet.transform.Translate(Vector2.up * Time.deltaTime * 10f);
-            
+            bullet.transform.Translate(Vector2.right * Time.deltaTime * 20f);
+            /*
+            if (d = direction.up)
+            {
+                bullet.transform.Translate(Vector2.up * Time.deltaTime * 20f);
+            }
+
+            if (d = direction.down)
+            {
+                bullet.transform.Translate(Vector2.down * Time.deltaTime * 20f);
+            }
+
+            if (d = direction.left)
+            {
+                bullet.transform.Translate(Vector2.left * Time.deltaTime * 20f);
+            }
+
+            if (d = direction.right)
+            {
+                bullet.transform.Translate(Vector2.right * Time.deltaTime * 20f);
+            }*/
         }
 
         if (!shot)
@@ -39,7 +57,7 @@ public class Turret : MonoBehaviour
             turret.GetComponent<SpriteRenderer>().sprite = turret2;
             bullet.SetActive(false);
             bullet.transform.SetParent(this.transform);
-            bullet.GetComponent<Transform>().position = new Vector2(xposition, yposition);
+            bullet.GetComponent<Transform>().position = /*new Vector2(xposition, yposition);*/ spawnpoint.position;
         }
 
         //turns on and off turret

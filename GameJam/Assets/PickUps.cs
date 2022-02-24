@@ -11,18 +11,12 @@ public class PickUps : MonoBehaviour
     public GameObject enterance;
     public GameObject door;
     public GameObject door15;
-    public GameObject door2;
     public GameObject key;
-    public GameObject key2;
     public GameObject thelever;
     public Sprite Lever1;
     public Sprite Lever2;
 
-    public GameObject flickswitch1;
-    public GameObject flickswitch2;
-    public GameObject flickswitch3;
-    public GameObject flickswitch4;
-    public GameObject flickswitch5;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +24,6 @@ public class PickUps : MonoBehaviour
         havekey = false;
         flickedswitch = false;
         door.GetComponent<BoxCollider2D>().enabled = false;
-        door2.GetComponent<BoxCollider2D>().enabled = true;
 
     }
 
@@ -41,11 +34,7 @@ public class PickUps : MonoBehaviour
 
         DoIHaveKey();
 
-        complicated();
-
         OpenDoor1();
-
-        Opendoor2();
     }
 
     //Pick up key
@@ -61,12 +50,6 @@ public class PickUps : MonoBehaviour
             key.GetComponent<BoxCollider2D>().enabled = false;
         }
 
-        if (collision.gameObject.CompareTag("key2"))
-        {
-            //door2
-            door2.GetComponent<BoxCollider2D>().enabled = false;
-            Invoke("DoorTimer", 8f);
-        }
 
         if (collision.gameObject.CompareTag("door"))
         {
@@ -138,97 +121,6 @@ public class PickUps : MonoBehaviour
         enterance.GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    //press buttons in a certain order
-    void complicated()
-    {
-        //2 has to be unactive first
-        if (flickswitch2.activeSelf && !flickswitch1.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch2.activeSelf && !flickswitch3.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch2.activeSelf && !flickswitch4.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch2.activeSelf && !flickswitch5.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-
-        //4 has to be unactive second
-        if (flickswitch4.activeSelf && !flickswitch1.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch4.activeSelf && !flickswitch3.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch4.activeSelf && !flickswitch5.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-
-        //1 has to be unactive second
-        if (flickswitch1.activeSelf && !flickswitch3.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-        if (flickswitch1.activeSelf && !flickswitch5.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-
-        //5 has to be unactive second
-        if (flickswitch5.activeSelf && !flickswitch3.activeSelf)
-        {
-            flickswitch1.SetActive(true);
-            flickswitch2.SetActive(true);
-            flickswitch3.SetActive(true);
-            flickswitch4.SetActive(true);
-            flickswitch5.SetActive(true);
-        }
-    }
 
     //Opens door for first level
     void OpenDoor1()
@@ -239,30 +131,6 @@ public class PickUps : MonoBehaviour
             door.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
-
-    //door opens when task is complete
-    void Opendoor2()
-    {
-        if (!flickswitch1.activeSelf &&
-            !flickswitch2.activeSelf &&
-            !flickswitch3.activeSelf &&
-            !flickswitch4.activeSelf &&
-            !flickswitch5.activeSelf)
-        {
-            key2.SetActive(true);
-        }
-    }
-
-    //door closes after 8 seconds
-    void DoorTimer()
-    {
-        flickswitch1.SetActive(true);
-        flickswitch2.SetActive(true);
-        flickswitch3.SetActive(true);
-        flickswitch4.SetActive(true);
-        flickswitch5.SetActive(true);
-
-        door2.GetComponent<BoxCollider2D>().enabled = true;
-    }
+    
 
 }

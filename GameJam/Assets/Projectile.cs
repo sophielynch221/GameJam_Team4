@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float speed;
-    public GameObject projectile;
-
-    public void Ini(Vector2 dir)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.velocity = dir * speed;
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            
+        }
     }
-    
-    
+
+
 }
