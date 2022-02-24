@@ -30,8 +30,6 @@ public class PickUps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
         DoIHaveKey();
 
         OpenDoor1();
